@@ -6,9 +6,12 @@ class DemoQa(BasePage): #создаем класс из род.класса
 
     def __init__(self, driver):
         self.base_url = 'https://demoqa.com/'
+        super().__init__(driver, self.base_url)
         self.icon = WebElement(driver, locator='#app > header > a')
         self.btn_elements = WebElement(driver, locator='#app > div > div > div.home-body > div > div:nth-child(1)')
-        super().__init__(driver, self.base_url)
+        self.start_url = 'https://demoqa.com/'
+        self.tools_qa = WebElement(driver, '#app > footer > span')
+        self.center = WebElement(driver, '//*[@id="app"]/div/div/div[2]/div[2]/text()')
 
 
     # def exist_icon(self):
