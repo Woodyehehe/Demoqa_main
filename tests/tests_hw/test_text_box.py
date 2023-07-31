@@ -15,4 +15,3 @@ def test_text_box(browser):
     time.sleep(2)
     assert text_box.name.get_text() == 'Name:Testerov'
     assert text_box.address.get_text() == 'Current Address :street Vyazov, 13'
-

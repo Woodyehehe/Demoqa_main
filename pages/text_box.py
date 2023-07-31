@@ -12,4 +12,3 @@ class TextBox(BasePage):
         self.name = WebElement(driver, '#name')
         self.address = WebElement(driver, 'p#currentAddress')
 
-

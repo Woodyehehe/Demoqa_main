@@ -4,10 +4,10 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
 class WebElement:
-    def __init__(self, driver, locator=''):
+    def __init__(self, driver, locator='', locator_type='css'):
         self.driver = driver
         self.locator = locator
-
+        self.locator_type = locator_type
     def click(self):
         self.find_element().click()
 
@@ -15,11 +15,11 @@ class WebElement:
         self.driver.execute_script("arguments[0].click();", self.find_element())
 
     def find_element(self):
-        return self.driver.find_element(By.CSS_SELECTOR, self.locator)
+        return self.driver.find_element(self.get_by_type(), self.locator)
 
     def find_elements(self):  # пользуемся, когда надо посчитать кол-во эл-ов или надо сделать цикличную проверку
                                 # (один тест, но для каждого эл-та)
-        return self.driver.find_elements(By.CSS_SELECTOR, self.locator)
+        return self.driver.find_elements(self.get_by_type(), self.locator)
 
     def check_count_elements(self, count: int) -> bool:
         if len(self.find_elements()) == count:
@@ -31,7 +31,7 @@ class WebElement:
             self.find_element() #поиск для конкретного элемента
         except NoSuchElementException:
             return False
-        return True
+        return True #если возвращает True,то мы не указываем сравнение
 
     def get_text(self):
         return self.find_element().text
@@ -46,4 +46,35 @@ class WebElement:
         self.find_element().send_keys(Keys.CONTROL + 'a')
         self.find_element().send_keys(Keys.DELETE)
 
+    def get_dom_attribute(self, name: str):
+        value = self.find_element().get_dom_attribute(name)
+
+        if value is None:
+            return False
+        if len(value) > 0:
+            return value
+        return True
+
+    def get_by_type(self):
+        if self.locator_type == "id":
+            return By.ID
+        elif self.locator_type == "name":
+            return By.NAME
+        elif self.locator_type == "xpath":
+            return By.XPATH
+        elif self.locator_type == "css":
+            return By.CSS_SELECTOR
+        elif self.locator_type == "class":
+            return By.CLASS_NAME
+        elif self.locator_type == "link":
+            return By.LINK_TEXT
+        else:
+            print("Locator type " + self.locator_type + " not correct")
+        return False
+
+    def scroll_to_element(self): #метод прокрутки страницы до любого элемента
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);", self.find_element())
+
+    def check_css(self, style, value=''):
+        return self.find_element().value_of_css_property(style) == value
 

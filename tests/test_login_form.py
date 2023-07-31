@@ -21,7 +21,7 @@ def test_login_form(browser):
     form_page.btn_close_modal.click_force()
 
 # дз 9* МОЗГ ВЫШЕЛ ИЗ ЧАТА :((
-#
+
 # def test_full_field(browser):
 #     form_page = FormPage(browser)
 #
@@ -41,3 +41,9 @@ def test_login_form(browser):
 #         if element == 'Rajastan':
 #             form_page.state.click()
 #             break
+
+# def test_state(browser):
+#     form_page = FormPage
+#
+#     form_page.visit()
+#

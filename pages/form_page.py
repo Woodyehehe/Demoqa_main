@@ -16,8 +16,9 @@ class FormPage(BasePage):
         self.btn_close_modal = WebElement(driver, '#closeLargeModal')
         self.hobbies = WebElement(driver, '#hobbiesWrapper')
         self.current_address = WebElement(driver, '#currentAddress')
-        self.state = WebElement(driver, '#state')
-        self.city = WebElement(driver, '#city > div')
+        self.form = WebElement(driver, '#userForm')
+        # self.btn_state = WebElement(driver, '#state')
+        # self.city = WebElement(driver, '#city > div')
         # self.state_choose = WebElement(driver, '???')
         # self.city_choose = WebElement(driver, '???')
 

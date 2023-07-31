@@ -17,3 +17,7 @@ class ElementsPage(BasePage):
 
         self.footer_text = WebElement(driver, '#app > footer > span')
         self.icon_center_element = WebElement(driver, 'div.col-12.mt-4.col-md-6')
+
+        self.btns_sidebar = WebElement(driver, 'div.row > div:nth-child(1)')
+
+

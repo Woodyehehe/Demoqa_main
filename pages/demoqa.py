@@ -12,7 +12,7 @@ class DemoQa(BasePage): #создаем класс из род.класса
         self.start_url = 'https://demoqa.com/'
         self.tools_qa = WebElement(driver, '#app > footer > span')
         self.center = WebElement(driver, '//*[@id="app"]/div/div/div[2]/div[2]/text()')
-
+        self.h5 = WebElement(driver, 'div.card-body > h5')
 
     # def exist_icon(self):
     #     try:
